@@ -1,7 +1,7 @@
 class Product {
   final int id;
   final String name;
-  final int price;
+  final num price;
   
   Product(this.id, this.name, this.price);
 }
