@@ -1,0 +1,52 @@
+{
+  "products" : [
+    {
+      "id" : 1,
+      "name" : "Telefon",
+      "price" : 40000
+    },
+    {
+      "id" : 2,
+      "name" : "Tablet",
+      "price" : 20000
+    },
+    {
+      "id" : 3,
+      "name" : "Bilgisayar",
+      "price" : 50000
+    },
+    {
+      "id" : 4,
+      "name" : "Şarj Aleti",
+      "price" : 400
+    },
+    {
+      "id" : 5,
+      "name" : "Powerbank",
+      "price" : 1000
+    },
+    {
+      "id" : 6,
+      "name" : "Monitör",
+      "price" : 5000
+    },
+    {
+      "id" : 7,
+      "name" : "Mouse",
+      "price" : 500
+    },
+    {
+      "id" : 8,
+      "name" : "Klavye",
+      "price" : 900
+    },
+    {
+      "id" : 9,
+      "name" : "USB Hub",
+      "price" : 1200
+    }
+  ],
+  "users": [
+
+  ]
+}

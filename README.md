@@ -54,3 +54,7 @@ lib/
 ├── ProductDetailPage.dart  # Seçilen ürünün detaylarını içerir.
 └── main.dart               # Uygulamanın başlangıç noktası ve go_router yapılandırması.
 ```
+
+### Dependencies
+- go_router
+- http
