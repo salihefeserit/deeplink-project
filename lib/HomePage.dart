@@ -49,7 +49,7 @@ class _ProductCard extends StatelessWidget {
         context.go('/product/${prdct.id}');
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.indigoAccent,
+        backgroundColor: Colors.black12,
         padding: EdgeInsets.symmetric(vertical: 10),
       ),
       child: Center(
@@ -58,7 +58,7 @@ class _ProductCard extends StatelessWidget {
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
       ),
