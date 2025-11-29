@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-class ProductDetailPage extends StatefulWidget {
-  const ProductDetailPage({super.key});
+class ProductDetailPage extends StatelessWidget {
+  final int productid;
 
-  @override
-  State<ProductDetailPage> createState() => _ProductDetailPageState();
-}
+  const ProductDetailPage({super.key, required this.productid});
 
-class _ProductDetailPageState extends State<ProductDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +32,19 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text("Ürün ID :")],
+          children: [
+            Text("Ürün ID :", style: TextStyle(fontSize: 20)),
+            Text(
+              productid.toString(),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            ),
+            SizedBox(height: 10,),
+            ElevatedButton.icon(
+              onPressed: () => context.go('/'),
+              icon: Icon(Icons.keyboard_return_rounded),
+              label: Text('Geri Don'),
+            ),
+          ],
         ),
       ),
     );

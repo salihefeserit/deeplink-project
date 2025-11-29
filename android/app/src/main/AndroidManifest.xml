@@ -27,9 +27,14 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:host="product" android:scheme="dLinkApp" />
+
+                <data
+                    android:host="deeplink"
+                    android:pathPrefix="/"
+                    android:scheme="dLinkApp" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

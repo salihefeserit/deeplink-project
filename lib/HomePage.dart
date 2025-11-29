@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'Products.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({
-    super.key,
-  });
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,11 @@ class HomePage extends StatelessWidget {
           child: Center(
             child: Text(
               "ÜRÜNLER",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
@@ -42,7 +45,9 @@ class _ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        context.go('/product/${prdct.id}');
+      },
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.indigoAccent,
         padding: EdgeInsets.symmetric(vertical: 10),
@@ -50,7 +55,11 @@ class _ProductCard extends StatelessWidget {
       child: Center(
         child: Text(
           prdct.name,
-          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
       ),
     );
