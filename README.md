@@ -1,3 +1,5 @@
+# DeepLink Project
+
 - Bu uygulama, ürünler arasında gezinmeyi ve deep linking (derin bağlantı) özelliklerini test etmeyi kolaylaştıran bir yapı sunar.
 
 ### Genel Bakış
