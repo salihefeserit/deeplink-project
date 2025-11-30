@@ -61,7 +61,7 @@ adb shell am start -W -a android.intent.action.VIEW -d "dLinkApp://deeplink/prod
 Bu komut düzgün çalışırsa, ID'si 1 olan ürünün **ProductDetailPage** sayfasını açar.
 
 ```shell
-adb shell am start -W -a android.intent.action.VIEW -d "dLinkApp://deeplink/product/1" com.example.deeplink_product
+adb shell am start -W -a android.intent.action.VIEW -d "dLinkApp://deeplink/products/1" com.example.deeplink_product
 ```
 
 **3. Ana Sayfa Testi:** 
