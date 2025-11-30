@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'package:deeplink_product/ProductDetailPage.dart';
 import 'package:deeplink_product/ProfileDetailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:app_links/app_links.dart';
 import 'HomePage.dart';
 import 'ProfilesPage.dart';
 import 'ProductsPage.dart';
@@ -41,8 +43,38 @@ final GoRouter _router = GoRouter(
   ],
 );
 
-class dl_Product extends StatelessWidget {
+class dl_Product extends StatefulWidget {
   const dl_Product({super.key});
+
+  @override
+  State<dl_Product> createState() => _dl_ProductState();
+}
+
+class _dl_ProductState extends State<dl_Product> {
+  StreamSubscription<Uri>? _linkSubscription;
+
+  Future<void> initDeepLinks() async {
+    _linkSubscription = AppLinks().uriLinkStream.listen((uri) {
+      debugPrint('onAppLink: $uri');
+      openAppLink(uri);
+    });
+  }
+
+  void openAppLink(Uri uri) {
+    context.go(uri.fragment);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initDeepLinks();
+  }
+
+  @override
+  void dispose() {
+    _linkSubscription?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
