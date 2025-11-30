@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
-import 'Products.dart';
+import 'Product.dart';
 
 class ProductsPage extends StatefulWidget {
   const ProductsPage({super.key});
@@ -78,7 +78,7 @@ class _ProductsPageState extends State<ProductsPage> {
         itemBuilder: (context, index) =>
             _ProductCard(prdct: products[index]),
         itemCount: products.length,
-        padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
+        padding: EdgeInsetsGeometry.only(left: 16, right: 16, bottom: 40, top: 10),
       ),
       floatingActionButton: FloatingActionButton(onPressed: () => context.go('/'), child: Icon(Icons.arrow_back_outlined),),
     );

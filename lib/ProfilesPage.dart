@@ -78,7 +78,7 @@ class _ProfilesPageState extends State<ProfilesPage> {
       body: ListView.builder(
         itemBuilder: (context, index) => _UsersCard(usr: users[index]),
         itemCount: users.length,
-        padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
+        padding: EdgeInsetsGeometry.only(left: 16, right: 16, bottom: 40, top: 10),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.go('/'),
