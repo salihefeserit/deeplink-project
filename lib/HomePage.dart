@@ -1,12 +1,64 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:http/http.dart' as http;
 import 'Products.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool _isLoading = true;
+  late List<Product> products;
+
+  Future<void> getApiVerisi() async {
+    final url = Uri.parse(
+      "https://fakestoreapi.com/products/",
+    );
+
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        setState(() {
+          final List<dynamic> data = jsonDecode(response.body);
+          products = data
+              .map(
+                (item) =>
+                    Product(item["id"] as int, item["title"], item["price"]),
+              )
+              .toList();
+          _isLoading = false;
+        });
+      } else {
+        setState(() {
+          _isLoading = false;
+        });
+        debugPrint("İstek başarısız oldu. Durum Kodu : ${response.statusCode}");
+      }
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
+      debugPrint("Hata! : $e");
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getApiVerisi();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (_isLoading == true) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white70,
@@ -50,15 +102,18 @@ class _ProductCard extends StatelessWidget {
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.black12,
-        padding: EdgeInsets.symmetric(vertical: 10),
       ),
-      child: Center(
-        child: Text(
-          prdct.name,
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
+        child: Center(
+          child: Text(
+            prdct.name,
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+            textAlign: TextAlign.center,
           ),
         ),
       ),

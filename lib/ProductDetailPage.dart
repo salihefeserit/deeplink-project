@@ -1,13 +1,68 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:http/http.dart' as http;
+import 'package:deeplink_product/Products.dart';
 
-class ProductDetailPage extends StatelessWidget {
+class ProductDetailPage extends StatefulWidget {
   final int productid;
 
   const ProductDetailPage({super.key, required this.productid});
 
   @override
+  State<ProductDetailPage> createState() => _ProductDetailPageState();
+}
+
+class _ProductDetailPageState extends State<ProductDetailPage> {
+  bool _isLoading = true;
+  Product takenProduct = Product(0, "", 0);
+
+  Future<void> getApiVerisi() async {
+    final url = Uri.parse(
+      "https://fakestoreapi.com/products/${widget.productid.toString()}",
+    );
+
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        setState(() {
+          final Map<String, dynamic> data = jsonDecode(response.body);
+          takenProduct = Product(
+            widget.productid,
+            data["title"],
+            data["price"],
+          );
+          debugPrint(
+            "${takenProduct.name}, ${takenProduct.id}, ${takenProduct.price}",
+          );
+          _isLoading = false;
+        });
+      } else {
+        setState(() {
+          _isLoading = false;
+        });
+        debugPrint("İstek başarısız oldu. Durum Kodu : ${response.statusCode}");
+      }
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
+      debugPrint("Hata! : $e");
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getApiVerisi();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (_isLoading == true) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white70,
@@ -33,12 +88,27 @@ class ProductDetailPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Ürün ID :", style: TextStyle(fontSize: 20)),
             Text(
-              productid.toString(),
+              widget.productid.toString(),
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
             ),
-            SizedBox(height: 10,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 60),
+              child: Text(
+                takenProduct.name,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+            ),
+            Text(
+              "${takenProduct.price.toString()} \$",
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Colors.red,
+              ),
+            ),
+            SizedBox(height: 10),
             ElevatedButton.icon(
               onPressed: () => context.go('/'),
               icon: Icon(Icons.keyboard_return_rounded),
