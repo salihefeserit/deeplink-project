@@ -2,23 +2,23 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
-import 'package:deeplink_product/Products.dart';
+import 'User.dart';
 
-class ProductDetailPage extends StatefulWidget {
-  final int productid;
-  const ProductDetailPage({super.key, required this.productid});
+class ProfileDetailPage extends StatefulWidget {
+  final int userid;
+  const ProfileDetailPage({required this.userid, super.key});
 
   @override
-  State<ProductDetailPage> createState() => _ProductDetailPageState();
+  State<ProfileDetailPage> createState() => _ProfileDetailPageState();
 }
 
-class _ProductDetailPageState extends State<ProductDetailPage> {
+class _ProfileDetailPageState extends State<ProfileDetailPage> {
   bool _isLoading = true;
-  late Product takenProduct;
+  late User takenUsr;
 
   Future<void> getApiVerisi() async {
     final url = Uri.parse(
-      "https://fakestoreapi.com/products/${widget.productid.toString()}",
+      "https://fakestoreapi.com/users/${widget.userid.toString()}",
     );
 
     try {
@@ -26,10 +26,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       if (response.statusCode == 200) {
         setState(() {
           final Map<String, dynamic> data = jsonDecode(response.body);
-          takenProduct = Product(
-            widget.productid,
-            data["title"],
-            data["price"],
+          takenUsr = User(
+            data["id"],
+            data["email"],
+            data["username"],
+            data["password"],
           );
           _isLoading = false;
         });
@@ -67,11 +68,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12),
               child: Text(
-                "ÜRÜN DETAY",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                "PROFİL DETAY",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -79,24 +77,29 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       ),
       body: Center(
         child: Card(
-          margin: EdgeInsets.symmetric(vertical: 250, horizontal: 25),
+          margin: EdgeInsets.symmetric(vertical: 280, horizontal: 25),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                widget.productid.toString(),
+                takenUsr.id.toString(),
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 60),
                 child: Text(
-                  takenProduct.title,
+                  takenUsr.email,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
               Text(
-                "${takenProduct.price.toString()} \$",
+                takenUsr.username,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              Text(
+                takenUsr.password,
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -108,7 +111,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.go('/products'),
+        onPressed: () => context.go('/profiles'),
         child: Icon(Icons.keyboard_return_rounded),
       ),
     );

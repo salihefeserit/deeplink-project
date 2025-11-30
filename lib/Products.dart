@@ -1,9 +1,9 @@
 class Product {
   final int id;
-  final String name;
+  final String title;
   final num price;
   
-  Product(this.id, this.name, this.price);
+  Product(this.id, this.title, this.price);
 }
 
 List<Product> _products = [
