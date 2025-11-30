@@ -18,7 +18,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
   Future<void> getApiVerisi() async {
     final url = Uri.parse("https://fakestoreapi.com/products/${widget.productid.toString()}");
-    final url1 = Uri.parse("my-json-server.typicode.com/salihefeserit/fake-api/products/${widget.productid}");
 
     try {
       final response = await http.get(url);
