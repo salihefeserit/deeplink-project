@@ -63,10 +63,10 @@ class _ProfilesPageState extends State<ProfilesPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Card(
+        title: const Card(
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
+              padding: EdgeInsets.symmetric(vertical: 12),
               child: Text(
                 "KULLANICILAR",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -78,11 +78,11 @@ class _ProfilesPageState extends State<ProfilesPage> {
       body: ListView.builder(
         itemBuilder: (context, index) => _UsersCard(usr: users[index]),
         itemCount: users.length,
-        padding: EdgeInsetsGeometry.only(left: 16, right: 16, bottom: 40, top: 10),
+        padding: const EdgeInsetsGeometry.only(left: 16, right: 16, bottom: 40, top: 10),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.go('/'),
-        child: Icon(Icons.arrow_back_outlined),
+        child: const Icon(Icons.arrow_back_outlined),
       ),
     );
   }
@@ -103,7 +103,7 @@ class _UsersCard extends StatelessWidget {
         child: Center(
           child: Text(
             usr.username,
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
         ),

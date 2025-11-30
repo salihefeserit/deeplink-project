@@ -62,10 +62,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Card(
+        title: const Card(
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
+              padding: EdgeInsets.symmetric(vertical: 12),
               child: Text(
                 "ÜRÜN DETAY",
                 style: TextStyle(
@@ -79,25 +79,25 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       ),
       body: Center(
         child: Card(
-          margin: EdgeInsets.symmetric(vertical: 250, horizontal: 25),
+          margin: const EdgeInsets.symmetric(vertical: 250, horizontal: 25),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 widget.productid.toString(),
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 60),
                 child: Text(
                   takenProduct.title,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
               Text(
                 "${takenProduct.price.toString()} \$",
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
                   color: Colors.red,
@@ -109,7 +109,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.go('/products'),
-        child: Icon(Icons.keyboard_return_rounded),
+        child: const Icon(Icons.keyboard_return_rounded),
       ),
     );
   }

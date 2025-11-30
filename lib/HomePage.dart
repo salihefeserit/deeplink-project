@@ -13,10 +13,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Card(
+        title: const Card(
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
+              padding: EdgeInsets.symmetric(vertical: 12),
               child: Text(
                 "E-TICARET UYGULAMASI",
                 style: TextStyle(
@@ -34,13 +34,13 @@ class _HomePageState extends State<HomePage> {
           children: [
             ElevatedButton.icon(
               onPressed: () => context.go('/products/'),
-              label: Text('Ürünler'),
-              icon: Icon(Icons.shopping_bag_outlined),
+              label: const Text('Ürünler'),
+              icon: const Icon(Icons.shopping_bag_outlined),
             ),
             ElevatedButton.icon(
               onPressed: () => context.go('/profiles/'),
-              label: Text('Kullanıcılar'),
-              icon: Icon(Icons.person),
+              label: const Text('Kullanıcılar'),
+              icon: const Icon(Icons.person),
             ),
           ],
         ),

@@ -59,34 +59,39 @@ class _ProductsPageState extends State<ProductsPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Card(
+        title: const Card(
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
+              padding: EdgeInsets.symmetric(vertical: 12),
               child: Text(
                 "ÜRÜNLER",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
           ),
         ),
       ),
       body: ListView.builder(
-        itemBuilder: (context, index) =>
-            _ProductCard(prdct: products[index]),
+        itemBuilder: (context, index) => _ProductCard(prdct: products[index]),
         itemCount: products.length,
-        padding: EdgeInsetsGeometry.only(left: 16, right: 16, bottom: 40, top: 10),
+        padding: const EdgeInsetsGeometry.only(
+          left: 16,
+          right: 16,
+          bottom: 40,
+          top: 10,
+        ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () => context.go('/'), child: Icon(Icons.arrow_back_outlined),),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.go('/'),
+        child: const Icon(Icons.arrow_back_outlined),
+      ),
     );
   }
 }
 
 class _ProductCard extends StatelessWidget {
   final Product prdct;
+
   const _ProductCard({required this.prdct, super.key});
 
   @override
@@ -100,10 +105,7 @@ class _ProductCard extends StatelessWidget {
         child: Center(
           child: Text(
             prdct.title,
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
         ),

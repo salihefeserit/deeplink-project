@@ -63,10 +63,10 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Card(
+        title: const Card(
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
+              padding: EdgeInsets.symmetric(vertical: 12),
               child: Text(
                 "PROFİL DETAY",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -77,30 +77,30 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
       ),
       body: Center(
         child: Card(
-          margin: EdgeInsets.symmetric(vertical: 280, horizontal: 25),
+          margin: const EdgeInsets.symmetric(vertical: 280, horizontal: 25),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 takenUsr.id.toString(),
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 60),
                 child: Text(
                   takenUsr.email,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
               Text(
                 takenUsr.username,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               Text(
                 takenUsr.password,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
                   color: Colors.red,
@@ -112,7 +112,7 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.go('/profiles'),
-        child: Icon(Icons.keyboard_return_rounded),
+        child: const Icon(Icons.keyboard_return_rounded),
       ),
     );
   }
