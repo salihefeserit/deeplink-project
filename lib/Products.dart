@@ -6,7 +6,7 @@ class Product {
   Product(this.id, this.name, this.price);
 }
 
-List<Product> products = [
+List<Product> _products = [
   Product(1, "Telefon", 40000),
   Product(2, "Tablet", 20000),
   Product(3, "Bilgisayar", 50000),

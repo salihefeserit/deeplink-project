@@ -6,6 +6,7 @@ import 'package:deeplink_product/Products.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final int productid;
+
   const ProductDetailPage({super.key, required this.productid});
 
   @override
@@ -17,26 +18,32 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   Product takenProduct = Product(0, "", 0);
 
   Future<void> getApiVerisi() async {
-    final url = Uri.parse("https://fakestoreapi.com/products/${widget.productid.toString()}");
+    final url = Uri.parse(
+      "https://fakestoreapi.com/products/${widget.productid.toString()}",
+    );
 
     try {
       final response = await http.get(url);
       if (response.statusCode == 200) {
         setState(() {
           final Map<String, dynamic> data = jsonDecode(response.body);
-          takenProduct = Product(widget.productid, data["title"], data["price"]);
-          debugPrint("${takenProduct.name}, ${takenProduct.id}, ${takenProduct.price}");
+          takenProduct = Product(
+            widget.productid,
+            data["title"],
+            data["price"],
+          );
+          debugPrint(
+            "${takenProduct.name}, ${takenProduct.id}, ${takenProduct.price}",
+          );
           _isLoading = false;
         });
-      }
-      else {
+      } else {
         setState(() {
           _isLoading = false;
         });
         debugPrint("İstek başarısız oldu. Durum Kodu : ${response.statusCode}");
       }
-    }
-    catch (e) {
+    } catch (e) {
       setState(() {
         _isLoading = false;
       });
@@ -85,9 +92,23 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               widget.productid.toString(),
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
             ),
-            Text(takenProduct.name),
-            Text(takenProduct.price.toString()),
-            SizedBox(height: 10,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 60),
+              child: Text(
+                takenProduct.name,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+            ),
+            Text(
+              "${takenProduct.price.toString()} \$",
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Colors.red,
+              ),
+            ),
+            SizedBox(height: 10),
             ElevatedButton.icon(
               onPressed: () => context.go('/'),
               icon: Icon(Icons.keyboard_return_rounded),
